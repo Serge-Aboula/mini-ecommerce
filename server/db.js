@@ -1,11 +1,11 @@
-require("dotenv").config({
-  path: process.env.NODE_ENV === "test" ? ".env.test" : ".env",
+require('dotenv').config({
+  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env'
 });
-const { createClient } = require("@libsql/client");
+const { createClient } = require('@libsql/client');
 
 const db = createClient({
   url: process.env.TURSO_DATABASE_URL,
-  authToken: process.env.TURSO_AUTH_TOKEN,
+  authToken: process.env.TURSO_AUTH_TOKEN
 });
 
 async function migrateColumns(table, columnsToAdd) {
@@ -14,9 +14,7 @@ async function migrateColumns(table, columnsToAdd) {
 
   for (const [columnName, columnDef] of Object.entries(columnsToAdd)) {
     if (!existingNames.includes(columnName)) {
-      await db.execute(
-        `ALTER TABLE ${table} ADD COLUMN ${columnName} ${columnDef}`,
-      );
+      await db.execute(`ALTER TABLE ${table} ADD COLUMN ${columnName} ${columnDef}`);
     }
   }
 }
@@ -38,8 +36,8 @@ async function initDb() {
   `);
 
   // Nouveauté propre à ce projet : rôle admin/user
-  await migrateColumns("users", {
-    role: "TEXT NOT NULL DEFAULT 'user'",
+  await migrateColumns('users', {
+    role: "TEXT NOT NULL DEFAULT 'user'"
   });
 
   await db.execute(`
