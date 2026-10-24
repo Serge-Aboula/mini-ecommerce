@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mini Shop</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="brand" id="brand-link">Mini Shop</a>
+      <nav>
+        <button class="nav-btn" id="nav-catalog">Catalogue</button>
+        <button class="nav-btn" id="nav-login">Connexion</button>
+        <span id="user-greeting" style="display: none"></span>
+        <button class="nav-btn" id="nav-logout" style="display: none">Déconnexion</button>
+      </nav>
+    </header>
+
+    <div id="error-message" style="display: none"></div>
+    <div id="toast" class="toast" style="display: none"></div>
+
+    <main>
+      <section id="catalog-view">
+        <div class="catalog-controls">
+          <select id="category-select">
+            <option value="">Toutes les catégories</option>
+          </select>
+          <select id="sort-select">
+            <option value="newest">Plus récents</option>
+            <option value="price_asc">Prix croissant</option>
+            <option value="price_desc">Prix décroissant</option>
+            <option value="alpha">Alphabétique</option>
+          </select>
+        </div>
+
+        <div id="loading-spinner" style="display: none">Chargement...</div>
+        <div id="product-grid" class="product-grid"></div>
+
+        <div id="pagination-controls" style="display: none">
+          <button id="prev-page-btn">← Précédent</button>
+          <span id="page-indicator"></span>
+          <button id="next-page-btn">Suivant →</button>
+        </div>
+      </section>
+
+      <section id="auth-view" style="display: none">
+        <h1>Mon compte</h1>
+        <div class="tabs">
+          <button id="tab-login" class="tab active">Connexion</button>
+          <button id="tab-register" class="tab">Inscription</button>
+        </div>
+
+        <form id="auth-form">
+          <input type="text" id="auth-name" placeholder="Nom" style="display: none" />
+          <input type="email" id="auth-email" placeholder="Email" required />
+          <div class="password-field">
+            <input
+              type="password"
+              id="auth-password"
+              placeholder="Mot de passe (8 caractères min.)"
+              required
+              minlength="8"
+            />
+            <button type="button" id="toggle-password" aria-label="Afficher le mot de passe">
+              👁️
+            </button>
+          </div>
+          <label class="checkbox-label" id="remember-me-wrapper">
+            <input type="checkbox" id="remember-me" checked />
+            Se souvenir de moi
+          </label>
+          <button type="submit" id="auth-submit" class="primary-btn">Se connecter</button>
+        </form>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
