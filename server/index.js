@@ -37,6 +37,6 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: 'Erreur interne du serveur' });
 });
 
-start();
-
+// Les tests attendent cette promesse avant d'envoyer leurs requêtes
+app.locals.ready = start();
 module.exports = app;
