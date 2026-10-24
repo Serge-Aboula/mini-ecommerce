@@ -87,3 +87,4 @@ async function cancelOrderAndRestoreStock(orderId) {
 }
 
 module.exports = router;
+module.exports.cancelOrderAndRestoreStock = cancelOrderAndRestoreStock;

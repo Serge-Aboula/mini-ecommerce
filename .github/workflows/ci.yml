@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Récupérer le code
+        uses: actions/checkout@v4
+
+      - name: Installer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Installer les dépendances
+        run: npm install
+
+      - name: Vérifier le formatage (Prettier)
+        run: npm run format:check
+
+      - name: Vérifier le code (ESLint)
+        run: npm run lint
+
+      - name: Lancer les tests
+        env:
+          TURSO_DATABASE_URL: file:./test.db
+          JWT_SECRET: b9a2f20479cf86fa8fa0e7da3129efc3db54dce98327f2551d06aa56660239da
+          STRIPE_SECRET_KEY: fake-stripe-key-for-ci
+          STRIPE_WEBHOOK_SECRET: fake-stripe-key-for-ci
+          APP_BASE_URL: http://localhost:3001
+        run: npm test
