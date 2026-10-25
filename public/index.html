@@ -11,6 +11,8 @@
       <a href="/" class="brand" id="brand-link">Mini Shop</a>
       <nav>
         <button class="nav-btn" id="nav-catalog">Catalogue</button>
+        <button class="nav-btn" id="nav-cart">Panier (0)</button>
+        <button class="nav-btn" id="nav-orders" style="display: none">Mes commandes</button>
         <button class="nav-btn" id="nav-login">Connexion</button>
         <span id="user-greeting" style="display: none"></span>
         <button class="nav-btn" id="nav-logout" style="display: none">Déconnexion</button>
@@ -44,8 +46,24 @@
         </div>
       </section>
 
+      <section id="cart-view" style="display: none">
+        <h1 class="view-title">Mon panier</h1>
+        <p id="cart-empty" class="empty-block">Ton panier est vide.</p>
+        <div id="cart-list"></div>
+        <div id="cart-summary" class="cart-summary" style="display: none">
+          <span>Total : <strong id="cart-total"></strong></span>
+          <button id="checkout-btn" class="primary-btn">Commander et payer</button>
+        </div>
+      </section>
+
+      <section id="orders-view" style="display: none">
+        <h1 class="view-title">Mes commandes</h1>
+        <div id="order-banner" class="banner" style="display: none"></div>
+        <div id="orders-list"></div>
+      </section>
+
       <section id="auth-view" style="display: none">
-        <h1>Mon compte</h1>
+        <h1 class="view-title">Mon compte</h1>
         <div class="tabs">
           <button id="tab-login" class="tab active">Connexion</button>
           <button id="tab-register" class="tab">Inscription</button>
