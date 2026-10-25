@@ -8,6 +8,9 @@ const ordersRouter = require('./routes/orders');
 const webhooksRouter = require('./routes/webhooks');
 
 const app = express();
+// Render place un proxy devant l'application : on lui fait confiance pour lire
+// l'adresse réelle du visiteur (utilisée par le rate limiting)
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3000;
 
 // Le webhook DOIT être monté AVANT express.json()
